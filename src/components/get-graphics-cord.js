@@ -81,17 +81,19 @@ function createFiniteDifferenceTable({ interStep, nod, a, alpha, gamma, betta, d
 
     for (let x = a, i = 0; i <= nod; x += interStep, i++) {
         arr[i][0] = myFunction({ ...arguments[0], x });
+        if (isNaN(arr[i][0])) {
+            //Вот и костыли подъехали 
+            arr[i][0] = myFunction({ ...arguments[0], x: x + interStep / 2 });
+            console.log("NaN");
+        }
     }
 
     for (let j = 1; j <= nod; j++) {
         for (let i = 0; i <= nod - j; i++) {
             arr[i][j] = arr[i + 1][j - 1] - arr[i][j - 1];
-            if (isNaN(arr[i][j])) {
-                console.log("NaN    ");
-            }
         }
     }
-
+    
     return arr;
 }
 

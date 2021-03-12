@@ -27,8 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const dataSet = getInputData([...optSize, nodes, del]);
 
-        console.log(dataSet);
-
         const pointSet = [];
 
         functions.forEach((fun) => {
