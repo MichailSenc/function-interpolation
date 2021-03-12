@@ -1,6 +1,8 @@
 import getInputData from "./components/get-intput-data";
 import basic from "./components/print-graphics";
 
+import { postDataToLocalStorage, getDataFromLocalStorage } from "./components/local-storage";
+
 import {
     getFunctionPoints,
     getPolPoints,
@@ -19,6 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
         button = document.querySelector("#button");
 
     const offset = 10000;
+
+    getDataFromLocalStorage([...functions, nodes, del, ...optSize]);
+    postDataToLocalStorage([...functions, nodes, del, ...optSize]);
 
     setListenersForCheckingData({ optSize, nodes });
 
