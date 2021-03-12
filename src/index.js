@@ -9,6 +9,7 @@ import {
 import {
     getFunctionPoints,
     getPolPoints,
+    getRnPoints,
 } from "./components/get-graphics-cord";
 
 import {
@@ -51,12 +52,15 @@ document.addEventListener("DOMContentLoaded", () => {
                         pointSet.push(getPolPoints(dataSet, offset));
                         break;
                     case "r":
+                        pointSet.push(getRnPoints(dataSet, offset));
                         break;
                     case "df":
                         break;
                     case "dp":
                         break;
                 }
+            } else {
+                pointSet.push([]);
             }
         });
         basic("#container", pointSet, dataSet);
