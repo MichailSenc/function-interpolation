@@ -48,7 +48,7 @@ function getInputData({ optSize, nodes, del }) {
     betta = parseInt(betta);
     gamma = parseInt(gamma);
     delta = parseInt(delta);
-    delta1 = parseInt(delta1);
+    delta1 = parseFloat(delta1);
     xi = parseInt(xi);
 
     return { a, b, c, d, nod, alpha, betta, gamma, delta, delta1, xi };

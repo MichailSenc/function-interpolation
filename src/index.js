@@ -1,21 +1,14 @@
 import getInputData from "./components/get-intput-data";
 import basic from "./components/print-graphics";
-
-import {
-    postDataToLocalStorage,
-    getDataFromLocalStorage,
-} from "./components/local-storage";
+import { isChecked, setListenersForCheckingData } from "./components/check-input-data";
+import { postDataToLocalStorage, getDataFromLocalStorage } from "./components/local-storage";
 
 import {
     getFunctionPoints,
     getPolPoints,
     getRnPoints,
+    getDifFunctionPoints,
 } from "./components/get-graphics-cord";
-
-import {
-    isChecked,
-    setListenersForCheckingData,
-} from "./components/check-input-data";
 
 document.addEventListener("DOMContentLoaded", () => {
     const optSize = document.querySelectorAll(".opt input[data-type-1]"),
@@ -55,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         pointSet.push(getRnPoints(dataSet, offset));
                         break;
                     case "df":
+                        pointSet.push(getDifFunctionPoints(dataSet, offset));
                         break;
                     case "dp":
                         break;
@@ -70,7 +64,5 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("keydown", (event) => {
         if (event.code === "Enter") start();
     });
-    functions.forEach((item) => {
-        item.addEventListener("change", () => start());
-    });
+    functions.forEach((item) => item.addEventListener("change", () => start()));
 });

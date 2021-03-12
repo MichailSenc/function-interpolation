@@ -1,7 +1,5 @@
 function myFunction({ alpha, betta, gamma, delta, xi, x }) {
-    return (
-        alpha * Math.sin(betta / (x - gamma) ** 2) + delta * Math.cos(xi * x)
-    );
+    return alpha * Math.sin(betta / (x - gamma) ** 2) + delta * Math.cos(xi * x);
 }
 // (alpha) * Math.sin(Math.tan((betta) * x)) +
 // (gamma) * Math.cos((delta) * x)
@@ -17,10 +15,20 @@ function getFunctionPoints({ a, b, alpha, betta, gamma, delta, xi }, offset) {
     return points;
 }
 
-function getPolPoints(
-    { a, b, d, nod, alpha, betta, gamma, delta, xi },
-    offset
-) {
+function getDifFunctionPoints({ a, b, c, d, alpha, betta, gamma, delta, n, delta1 }, offset) {
+    const points = [];
+    const stepX = (b - a) / offset;
+
+    for (let x = a; x <= b; x += stepX) {
+        let y = myFunction({ ...arguments[0], x });
+        let df = myFunction({ ...arguments[0], x: x + delta1 });
+        points.push([x, (y + df) / delta1]);
+    }
+    console.log(points);
+    return points;
+}
+
+function getPolPoints({ a, b, d, nod, alpha, betta, gamma, delta, xi }, offset) {
     const points = [];
     const stepX = (b - a) / offset;
     const interStep = (b - a) / nod;
@@ -28,7 +36,7 @@ function getPolPoints(
     const matr = createFiniteDifferenceTable({ interStep, ...arguments[0] });
 
     for (var x = a; x <= b; x += stepX) {
-        points.push([x, pol((x - a) / interStep, 0, nod, matr)]);
+        points.push([x, calcPolynom((x - a) / interStep, 0, nod, matr)]);
     }
 
     return points;
@@ -43,20 +51,12 @@ function getRnPoints({ a, b, alpha, betta, gamma, delta, xi, nod }, offset) {
 
     for (let x = a; x <= b; x += stepX) {
         let y = myFunction({ ...arguments[0], x });
-        points.push([x, y + pol((x - a) / interStep, 0, nod, matr)]);
+        points.push([x, y + calcPolynom((x - a) / interStep, 0, nod, matr)]);
     }
     return points;
 }
-function createFiniteDifferenceTable({
-    interStep,
-    nod,
-    a,
-    alpha,
-    gamma,
-    betta,
-    delta,
-    xi,
-}) {
+
+function createFiniteDifferenceTable({ interStep, nod, a, alpha, gamma, betta, delta, xi }) {
     let arr = [];
     for (let i = 0; i < nod + 1; i++) {
         arr[i] = [];
@@ -73,7 +73,7 @@ function createFiniteDifferenceTable({
         for (var i = 0; i <= nod - j; i++) {
             arr[i][j] = arr[i + 1][j - 1] - arr[i][j - 1];
             if (isNaN(arr[i][j])) {
-                console.log('NAN');
+                console.log("NaN    ");
             }
         }
     }
@@ -81,14 +81,14 @@ function createFiniteDifferenceTable({
     return arr;
 }
 
-function pol(t, k, n, matr) {
-    if (k < n) return pol(t, k + 1, n, matr) + fac(t, k) * matr[0][k];
-    return fac(t, k) * matr[0][k];
+function calcPolynom(t, k, n, matr) {
+    if (k < n) return calcPolynom(t, k + 1, n, matr) + coefAtDelta(t, k) * matr[0][k];
+    return coefAtDelta(t, k) * matr[0][k];
 }
 
-function fac(t, k) {
+function coefAtDelta(t, k) {
     if (k == 0) return 1;
-    return (t / k) * fac(t - 1, k - 1);
+    return (t / k) * coefAtDelta(t - 1, k - 1);
 }
 
-export { getFunctionPoints, getPolPoints, getRnPoints };
+export { getFunctionPoints, getPolPoints, getRnPoints, getDifFunctionPoints };
