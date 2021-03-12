@@ -15,16 +15,31 @@ function getFunctionPoints({ a, b, alpha, betta, gamma, delta, xi }, offset) {
     return points;
 }
 
-function getDifFunctionPoints({ a, b, c, d, alpha, betta, gamma, delta, n, delta1 }, offset) {
+function getDifFunctionPoints({ a, b, c, d, alpha, betta, gamma, delta, nod, delta1 }, offset) {
     const points = [];
     const stepX = (b - a) / offset;
 
     for (let x = a; x <= b; x += stepX) {
         let y = myFunction({ ...arguments[0], x });
         let df = myFunction({ ...arguments[0], x: x + delta1 });
-        points.push([x, (y + df) / delta1]);
+        points.push([x, (df - y) / delta1]);
     }
     console.log(points);
+    return points;
+}
+
+function getDifPolPoints({ a, b, c, d, alpha, betta, gamma, delta, nod, delta1 }, offset) {
+    const points = [];
+    const stepX = (b - a) / offset;
+    const interStep = (b - a) / nod;
+
+    const matr = createFiniteDifferenceTable({ interStep, ...arguments[0] });
+
+    for (let x = a; x <= b; x += stepX) {
+        let y = calcPolynom((x - a) / interStep, 0, nod, matr);
+        let dp = calcPolynom((x - a + delta1) / interStep, 0, nod, matr);
+        points.push([x, (dp - y) / delta1]);
+    }
     return points;
 }
 
@@ -35,7 +50,7 @@ function getPolPoints({ a, b, d, nod, alpha, betta, gamma, delta, xi }, offset) 
 
     const matr = createFiniteDifferenceTable({ interStep, ...arguments[0] });
 
-    for (var x = a; x <= b; x += stepX) {
+    for (let x = a; x <= b; x += stepX) {
         points.push([x, calcPolynom((x - a) / interStep, 0, nod, matr)]);
     }
 
@@ -65,12 +80,12 @@ function createFiniteDifferenceTable({ interStep, nod, a, alpha, gamma, betta, d
         }
     }
 
-    for (var x = a, i = 0; i <= nod; x += interStep, i++) {
+    for (let x = a, i = 0; i <= nod; x += interStep, i++) {
         arr[i][0] = myFunction({ ...arguments[0], x });
     }
 
-    for (var j = 1; j <= nod; j++) {
-        for (var i = 0; i <= nod - j; i++) {
+    for (let j = 1; j <= nod; j++) {
+        for (let i = 0; i <= nod - j; i++) {
             arr[i][j] = arr[i + 1][j - 1] - arr[i][j - 1];
             if (isNaN(arr[i][j])) {
                 console.log("NaN    ");
@@ -91,4 +106,4 @@ function coefAtDelta(t, k) {
     return (t / k) * coefAtDelta(t - 1, k - 1);
 }
 
-export { getFunctionPoints, getPolPoints, getRnPoints, getDifFunctionPoints };
+export { getFunctionPoints, getPolPoints, getRnPoints, getDifFunctionPoints, getDifPolPoints };

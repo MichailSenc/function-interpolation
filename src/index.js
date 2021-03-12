@@ -8,6 +8,7 @@ import {
     getPolPoints,
     getRnPoints,
     getDifFunctionPoints,
+    getDifPolPoints,
 } from "./components/get-graphics-cord";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -51,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         pointSet.push(getDifFunctionPoints(dataSet, offset));
                         break;
                     case "dp":
+                        pointSet.push(getDifPolPoints(dataSet, offset))
                         break;
                 }
             } else {
