@@ -1,7 +1,10 @@
 import getInputData from "./components/get-intput-data";
 import basic from "./components/print-graphics";
 
-import { postDataToLocalStorage, getDataFromLocalStorage } from "./components/local-storage";
+import {
+    postDataToLocalStorage,
+    getDataFromLocalStorage,
+} from "./components/local-storage";
 
 import {
     getFunctionPoints,
@@ -24,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getDataFromLocalStorage([...functions, nodes, del, ...optSize]);
     postDataToLocalStorage([...functions, nodes, del, ...optSize]);
+    start();
 
     setListenersForCheckingData({ optSize, nodes });
 
@@ -36,24 +40,33 @@ document.addEventListener("DOMContentLoaded", () => {
         const dataSet = getInputData({ optSize, nodes, del });
 
         const pointSet = [];
-        
-        pointSet.push(getFunctionPoints(dataSet, offset));
-        pointSet.push(getPolPoints(dataSet, offset));
 
-
-
+        functions.forEach((fun) => {
+            if (fun.checked) {
+                switch (fun.getAttribute("id")) {
+                    case "f":
+                        pointSet.push(getFunctionPoints(dataSet, offset));
+                        break;
+                    case "p":
+                        pointSet.push(getPolPoints(dataSet, offset));
+                        break;
+                    case "r":
+                        break;
+                    case "df":
+                        break;
+                    case "dp":
+                        break;
+                }
+            }
+        });
         basic("#container", pointSet, dataSet);
-
-        // //TODO: для каждой отмеченной функции построить график
-        // functions.forEach((fun) => {
-        //     if (fun.checked) {
-        //         // нарисовать граффик
-        //     }
-        // });
     }
 
     button.addEventListener("click", start);
     document.addEventListener("keydown", (event) => {
         if (event.code === "Enter") start();
+    });
+    functions.forEach((item) => {
+        item.addEventListener("change", () => start());
     });
 });
