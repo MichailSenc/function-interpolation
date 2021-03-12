@@ -27,13 +27,11 @@ function setListenersForCheckingData({ optSize, nodes }) {
     });
 }
 
-function isChecked({ optSize, nodes }) {
+function isChecked(inputs) {
     let flag = true;
-    optSize.forEach((item) => {
+    inputs.forEach((item) => {
         if (!item.value.match(/^\s*[-+]?[0-9]+\s*$/)) flag = false;
     });
-
-    if (!nodes.value.match(/^\s*[-+]?[0-9]+\s*$/)) flag = false;
     return flag;
 }
 

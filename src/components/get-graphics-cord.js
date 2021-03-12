@@ -24,7 +24,6 @@ function getDifFunctionPoints({ a, b, c, d, alpha, betta, gamma, delta, nod, del
         let df = myFunction({ ...arguments[0], x: x + delta1 });
         points.push([x, (df - y) / delta1]);
     }
-    console.log(points);
     return points;
 }
 

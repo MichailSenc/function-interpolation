@@ -2,14 +2,7 @@ import getInputData from "./components/get-intput-data";
 import basic from "./components/print-graphics";
 import { isChecked, setListenersForCheckingData } from "./components/check-input-data";
 import { postDataToLocalStorage, getDataFromLocalStorage } from "./components/local-storage";
-
-import {
-    getFunctionPoints,
-    getPolPoints,
-    getRnPoints,
-    getDifFunctionPoints,
-    getDifPolPoints,
-} from "./components/get-graphics-cord";
+import * as cordFunctions from "./components/get-graphics-cord";
 
 document.addEventListener("DOMContentLoaded", () => {
     const optSize = document.querySelectorAll(".opt input[data-type-1]"),
@@ -27,12 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
     setListenersForCheckingData({ optSize, nodes });
 
     function start() {
-        if (!isChecked({ optSize, nodes })) {
+        if (!isChecked([...optSize, nodes])) {
             console.log("Данные введены некорректно!");
             return;
         }
 
-        const dataSet = getInputData({ optSize, nodes, del });
+        const dataSet = getInputData([...optSize, nodes, del]);
+
+        console.log(dataSet);
 
         const pointSet = [];
 
@@ -40,19 +35,19 @@ document.addEventListener("DOMContentLoaded", () => {
             if (fun.checked) {
                 switch (fun.getAttribute("id")) {
                     case "f":
-                        pointSet.push(getFunctionPoints(dataSet, offset));
+                        pointSet.push(cordFunctions.getFunctionPoints(dataSet, offset));
                         break;
                     case "p":
-                        pointSet.push(getPolPoints(dataSet, offset));
+                        pointSet.push(cordFunctions.getPolPoints(dataSet, offset));
                         break;
                     case "r":
-                        pointSet.push(getRnPoints(dataSet, offset));
+                        pointSet.push(cordFunctions.getRnPoints(dataSet, offset));
                         break;
                     case "df":
-                        pointSet.push(getDifFunctionPoints(dataSet, offset));
+                        pointSet.push(cordFunctions.getDifFunctionPoints(dataSet, offset));
                         break;
                     case "dp":
-                        pointSet.push(getDifPolPoints(dataSet, offset))
+                        pointSet.push(cordFunctions.getDifPolPoints(dataSet, offset));
                         break;
                 }
             } else {
