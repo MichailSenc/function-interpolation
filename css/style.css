@@ -1,0 +1,125 @@
+#canvas {
+    border: 1px solid black;
+    display: block;
+    width: 1000px;
+    /* height: 1000px; */
+}
+
+.descr {
+    color: rgb(0, 0, 0);
+    /* text-align: center; */
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+.fraction, .top, .bottom {
+    padding: 0 5px;    
+}
+
+.fraction {
+    display: inline-block;
+    text-align: center;    
+
+}
+
+.bottom{
+    border-top: 1px solid #000;
+    display: block;
+}
+
+#container {
+    width: 1000px;
+    height: 500px;
+    margin: 8px auto;
+}
+
+.input_data {
+    display: inline-block;
+}
+
+.delete {
+    width: 20px;
+    height: 20px;
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background: url("../img/im1.png") center center/cover no-repeat;
+    cursor: pointer;
+}
+
+.hide {
+    display: none;
+}
+
+button {
+    display: block;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+    margin-bottom: 10px;
+}
+
+#del {
+    border: 1px olid #cccccc;
+    border-radius: 3px;
+    outline: none;
+    height: 25px;
+    width: 75px;
+    color: #cccccc;
+    font-size: 15px;
+    font-family: Tahoma;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    color: #000000;
+    padding: 3px;
+}
+
+.center {
+    position: top;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.opt {
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px;
+    font-size: 20px;
+    /* right: 20px; */
+}
+
+input[type="text"] {
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    outline: none;
+    height: 15px;
+    width: 70px;
+    color: #cccccc;
+    font-size: 11px;
+    font-family: Tahoma;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    color: #000000;
+    padding: 3px;
+    font-size: 15px;
+}
+
+select:hover {
+    border: 2px solid #11c6e6;
+}
+
+button:hover {
+    border: 2px solid #11c6e6;
+}
+
+input:hover {
+    border: 2px solid #11c6e6;
+}
