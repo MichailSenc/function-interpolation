@@ -34,10 +34,10 @@ function getInputData(items) {
                 xi = target.value;
                 break;
             case "nodes":
-                nod = nodes.value;
+                nod = target.value;
                 break;
             case "del":
-                delta1 = del.value;
+                delta1 = target.value;
                 break;
         }
     });

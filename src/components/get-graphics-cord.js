@@ -1,8 +1,8 @@
 function myFunction({ alpha, betta, gamma, delta, xi, x }) {
     return alpha * Math.sin(betta / (x - gamma) ** 2) + delta * Math.cos(xi * x);
+    // return alpha * Math.sin(xi * x) * Math.cos(Math.tan(betta / (x - gamma)));
 }
-// (alpha) * Math.sin(Math.tan((betta) * x)) +
-// (gamma) * Math.cos((delta) * x)
+
 
 function getFunctionPoints({ a, b, alpha, betta, gamma, delta, xi }, offset) {
     const points = [];
@@ -82,7 +82,7 @@ function createFiniteDifferenceTable({ interStep, nod, a, alpha, gamma, betta, d
     for (let x = a, i = 0; i <= nod; x += interStep, i++) {
         arr[i][0] = myFunction({ ...arguments[0], x });
         if (isNaN(arr[i][0])) {
-            //Вот и костыли подъехали 
+            //Вот и костыли подъехали
             arr[i][0] = myFunction({ ...arguments[0], x: x + interStep / 2 });
             console.log("NaN");
         }
@@ -93,7 +93,7 @@ function createFiniteDifferenceTable({ interStep, nod, a, alpha, gamma, betta, d
             arr[i][j] = arr[i + 1][j - 1] - arr[i][j - 1];
         }
     }
-    
+
     return arr;
 }
 
