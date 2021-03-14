@@ -15,23 +15,12 @@ button {
     margin-left: auto;
     margin-right: auto;
     color: rgb(14, 5, 5);
-    font-weight: 700;
-    padding: .5em 2em;
+    font-weight: 500;
+    padding: 0.5em 2em;
     border: 1px solid;
     border-radius: 1px;
     transition: 0.2s;
-}
-button:hover {
-    color: rgb(24, 24, 24);
-    border: 1px solid rgb(198, 198, 198);
-    background: #f7f7f7 linear-gradient(#f7f7f7, #f1f1f1);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-}
-button:active {
-    color: rgb(51, 51, 51);
-    border: 1px solid rgb(204, 204, 204);
-    background: rgb(238, 238, 238) linear-gradient(rgb(238, 238, 238), rgb(224, 224, 224));
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+    margin-bottom: 10px;
 }
 
 .bottom {
@@ -84,7 +73,7 @@ button {
     border-radius: 3px;
     outline: none;
     height: 25px;
-    width: 75px;
+    width: 94px;
     color: #cccccc;
     font-size: 15px;
     font-family: Tahoma;
@@ -105,12 +94,12 @@ input[type="text"] {
     border-radius: 3px;
     outline: none;
     height: 15px;
-    width: 70px;
+    width: 90px;
     color: #cccccc;
     font-size: 11px;
     font-family: Tahoma;
-    margin-top: 2px;
-    margin-bottom: 2px;
+    margin-top: 4px;
+    margin-bottom: 4px;
     color: #000000;
     padding: 3px;
     font-size: 15px;
@@ -120,4 +109,36 @@ select:hover,
 button:hover,
 input:hover {
     border: 2px solid #11c6e6;
+}
+
+input[type="checkbox"],
+.func_name_descr,
+.rectangle {
+    display: inline-block;
+    text-align: center;
+}
+
+input[type="checkbox"] {
+    margin-left: auto;
+}
+
+.check_container {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.func_name_descr {
+    width: 53px;
+    margin-left: auto;
+    text-align: center;
+
+}
+
+.rectangle {
+    width: 40px;
+    height: 20px;
+    float: right;
+    margin-right: 40px;
+    margin-left: 5px;
+    margin-top: 2px;
 }

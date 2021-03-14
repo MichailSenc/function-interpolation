@@ -55,6 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
         basic("#container", pointSet, dataSet);
     }
 
+    window.addEventListener("resize", () => start());
+
     button.addEventListener("click", start);
     document.addEventListener("keydown", (event) => {
         if (event.code === "Enter") start();

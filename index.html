@@ -11,7 +11,7 @@
         <h1>Интерполирование функции: y = α∙sin(β/(x - γ)<sup>2</sup>) + δ∙cosεx (1N)</h1>
 
         <div class="center">
-            <div style="width: 200px" class="layer1">
+            <div style="width: 180px" class="layer1">
                 <div id="opt-fitst" class="opt">
                     <div class="descr">Праметры</div>
                     <div>
@@ -74,11 +74,31 @@
                 </div>
                 <div id="opt-third" class="opt">
                     <div class="descr">Функции на графике</div>
-                    <div><input id="f" type="checkbox" /> f(x)</div>
-                    <div><input id="p" type="checkbox" /> P<sub>n</sub>(x)</div>
-                    <div><input id="r" type="checkbox" /> r<sub>n</sub>(x)</div>
-                    <div><input id="df" type="checkbox" /> ∂f(x)</div>
-                    <div><input id="dp" type="checkbox" /> ∂P<sub>n</sub>(x)</div>
+                    <div class="check_container">
+                        <input id="f" type="checkbox" />
+                        <div class="func_name_descr">f(x)</div>
+                        <div class="rectangle" style="background-color: #00A8F0;"></div>
+                    </div>
+                    <div class="check_container">
+                        <input id="p" type="checkbox" />
+                        <div class="func_name_descr">P<sub>n</sub>(x)</div>
+                        <div class="rectangle" style="background-color: #C0D800;"></div>
+                    </div>
+                    <div class="check_container">
+                        <input id="r" type="checkbox" />
+                        <div class="func_name_descr">r<sub>n</sub>(x)</div>
+                        <div class="rectangle" style="background-color: #CB4B4B;"></div>
+                    </div>
+                    <div class="check_container">
+                        <input id="df" type="checkbox" />
+                        <div class="func_name_descr">∂f(x)</div>
+                        <div class="rectangle" style="background-color: #4DA74D;"></div>
+                    </div>
+                    <div class="check_container">
+                        <input id="dp" type="checkbox" />
+                        <div class="func_name_descr">∂P<sub>n</sub>(x)</div>
+                        <div class="rectangle" style="background-color: #9440ED;"></div>
+                    </div>
                 </div>
                 <button id="button">Построить графики</button>
             </div>
